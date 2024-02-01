@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using ProyectoIT;
+using Repositorio;
+using System.Runtime.CompilerServices;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +13,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AppDBContext>
+    (options => options.UseSqlServer
+    (Configuration.Config()));
 
 var app = builder.Build();
 

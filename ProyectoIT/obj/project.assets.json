@@ -2481,11 +2481,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\ProyectoIT\\ProyectoIT.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Proyecto\\ProyectoIT\\ProyectoIT.csproj",
       "projectName": "ProyectoIT",
-      "projectPath": "C:\\Users\\Usuario\\Desktop\\ProyectoIT\\ProyectoIT.csproj",
+      "projectPath": "C:\\Users\\Usuario\\Desktop\\Proyecto\\ProyectoIT\\ProyectoIT.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\Desktop\\ProyectoIT\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\Desktop\\Proyecto\\ProyectoIT\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2507,11 +2507,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Usuario\\Desktop\\Model\\Model.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\Desktop\\Model\\Model.csproj"
+            "C:\\Users\\Usuario\\Desktop\\Proyecto\\Model\\Model.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Desktop\\Proyecto\\Model\\Model.csproj"
             },
-            "C:\\Users\\Usuario\\Desktop\\Repositorio\\Repositorio.csproj": {
-              "projectPath": "C:\\Users\\Usuario\\Desktop\\Repositorio\\Repositorio.csproj"
+            "C:\\Users\\Usuario\\Desktop\\Proyecto\\Repositorio\\Repositorio.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Desktop\\Proyecto\\Repositorio\\Repositorio.csproj"
             }
           }
         }

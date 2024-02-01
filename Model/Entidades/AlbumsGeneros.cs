@@ -10,5 +10,9 @@ namespace Model.Entidades
     {
         public int AlbumID { get; set; }
         public int GeneroID { get; set; }
+
+        
+
+        
     }
 }

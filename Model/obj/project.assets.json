@@ -2014,11 +2014,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Model\\Model.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\Proyecto\\Model\\Model.csproj",
       "projectName": "Model",
-      "projectPath": "C:\\Users\\Usuario\\Desktop\\Model\\Model.csproj",
+      "projectPath": "C:\\Users\\Usuario\\Desktop\\Proyecto\\Model\\Model.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuario\\Desktop\\Model\\obj\\",
+      "outputPath": "C:\\Users\\Usuario\\Desktop\\Proyecto\\Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

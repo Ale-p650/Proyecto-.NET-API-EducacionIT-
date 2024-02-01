@@ -20,9 +20,20 @@ namespace Repositorio
             
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            
+            mb.ConfigAlbum();
+            mb.ConfigAlbumsGeneros();
+            mb.ConfigArtista();
+            mb.ConfigCancion();
+            mb.ConfigGeneros();
+            mb.ConfigPais();
+            mb.ConfigPlaylist();
         }
 
         public DbSet<Album> Albums { get; set; }

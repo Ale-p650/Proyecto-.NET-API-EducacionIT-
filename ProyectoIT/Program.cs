@@ -1,22 +1,29 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectoIT;
 using Repositorio;
+using Repositorio.Interfaces;
+using Repositorio.Metodos;
 using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddMvc().AddJsonOptions
+    (options => options.JsonSerializerOptions.ReferenceHandler =
+    System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IAlbumRepositorio, AlbumREPO>();
+
 builder.Services.AddDbContext<AppDBContext>
     (options => options.UseSqlServer
-    (Configuration.Config()));
+    (Configuration.GetConnectionString()));
 
 var app = builder.Build();
 

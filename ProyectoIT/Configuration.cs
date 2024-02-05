@@ -2,7 +2,7 @@
 {
     public static class Configuration
     {
-        public static string Config()
+        public static string GetConnectionString()
         {
             var config = new ConfigurationBuilder().
                 SetBasePath(Directory.GetCurrentDirectory())

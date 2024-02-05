@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -39,7 +40,12 @@ namespace Model.Entidades
         [Required]
         public int ArtistaID { get; set; }
         public Artista? Artista { get; set; }
+
+
+        
     }
+
+
 
     public enum Tipo
     {

@@ -31,9 +31,9 @@ namespace Model.Entidades
         public int PaisID { get; set; }
         public Pais? Pais { get; set; }
 
-        public ICollection<Album>? Albums { get; set; }
+        public ICollection<Album> Albums { get; set; } 
 
-        public ICollection<Cancion>? Canciones { get; set; }
+        public ICollection<Cancion> Canciones { get; set; }
 
 
 

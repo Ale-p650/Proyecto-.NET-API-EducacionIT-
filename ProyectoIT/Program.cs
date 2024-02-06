@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProyectoIT;
 using Repositorio;
+using Repositorio.Clases_Servicio;
 using Repositorio.Interfaces;
 using Repositorio.Metodos;
 using System.Runtime.CompilerServices;
@@ -20,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IAlbumRepositorio, AlbumREPO>();
+builder.Services.AddScoped<IPaisRepositorio, PaisREPO>();
 
 builder.Services.AddDbContext<AppDBContext>
     (options => options.UseSqlServer

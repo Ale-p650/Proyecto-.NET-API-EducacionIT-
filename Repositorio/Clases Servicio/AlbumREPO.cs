@@ -46,6 +46,12 @@ namespace Repositorio.Metodos
                     result2.Add(new AlbumDTOGet(a));
                 }
 
+                foreach(AlbumDTOGet dto in result2)
+                {
+                    dto.Artista = new ArtistaDTOGetAlbum(context.Artistas.Find(dto.ArtistaID));
+
+                }
+
                 return result2;
             }
         }

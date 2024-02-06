@@ -8,12 +8,16 @@ namespace ProyectoIT.Controllers
     [Route("[controller]")]
     public class AlbumController : Controller
     {
+        #region ctor
+
         private readonly IAlbumRepositorio _repositorio;
 
         public AlbumController(IAlbumRepositorio repositorio)
         {
             _repositorio = repositorio;
         }
+
+        #endregion
 
 
 

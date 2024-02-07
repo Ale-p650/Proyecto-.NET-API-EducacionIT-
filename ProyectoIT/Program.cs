@@ -8,11 +8,12 @@ using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddMvc().AddJsonOptions
     (options => options.JsonSerializerOptions.ReferenceHandler =
     System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
+
 
 
 builder.Services.AddControllers();
@@ -20,8 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IAlbumRepositorio, AlbumREPO>();
-builder.Services.AddScoped<IPaisRepositorio, PaisREPO>();
+builder.Services.AddRepositories();
 
 builder.Services.AddDbContext<AppDBContext>
     (options => options.UseSqlServer

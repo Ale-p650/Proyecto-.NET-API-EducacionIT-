@@ -4,20 +4,18 @@ using Repositorio.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Repositorio.Clases_Servicio
 {
-    public class PaisREPO : IPaisRepositorio
+    public class GeneroREPO : IGeneroRepositorio
     {
-
         #region ctor
 
         private readonly DbContextOptions<AppDBContext> _options;
 
-        public PaisREPO(DbContextOptions<AppDBContext> options)
+        public GeneroREPO(DbContextOptions<AppDBContext> options)
         {
             _options = options;
         }
@@ -25,53 +23,55 @@ namespace Repositorio.Clases_Servicio
         #endregion
 
 
-        
-        public async Task CrearPais(Pais p)
+        public async Task CrearGenero(Genero g)
         {
             using(var context = new AppDBContext(_options))
             {
-                await context.AddAsync(p);
+                context.Generos.Add(g);
                 await context.SaveChangesAsync();
             }
         }
 
-        public async Task<Pais> GetPaisByID(int id)
+        public async Task<Genero> GetGeneroByID(int id)
         {
             using (var context = new AppDBContext(_options))
             {
-                return await context.Paises.FirstOrDefaultAsync(x => x.ID == id);
+                return await context.Generos.FirstOrDefaultAsync(x => x.ID == id);
             }
         }
 
-        public async Task<List<Pais>> GetPaises()
-        {
-            using(var context = new AppDBContext(_options))
-            {
-                var result = await context.Paises.ToListAsync();
-                return result;
-            }
-        }
-
-        public async Task<bool> RemovePais(int id)
+        public async Task<List<Genero>> GetGeneros()
         {
             using (var context = new AppDBContext(_options))
             {
-                Pais p = new Pais() { ID = id };
-                context.Paises.Remove(p);
+                var x = await context.Generos.ToListAsync();
+                return x;
+            }
+        }
+
+        public async Task<bool> RemoveGenero(int id)
+        {
+            Genero g = new Genero()
+            {
+                ID = id
+            };
+
+            using (var context = new AppDBContext(_options))
+            {
+                context.Generos.Remove(g);
                 var x = await context.SaveChangesAsync();
 
                 return x > 0;
+
             }
         }
 
-        public async Task<bool> UpdatePais(int id ,string nuevoNombrePais)
+        public async Task<bool> UpdateGenero(int id, string nuevoNombreGenero)
         {
             using (var context = new AppDBContext(_options))
             {
-                context.Paises.First(x => x.ID == id).NombrePais = nuevoNombrePais;
-
+                context.Generos.First(x => x.ID == id).NombreGenero = nuevoNombreGenero;
                 var x = await context.SaveChangesAsync();
-
                 return x > 0;
             }
         }

@@ -46,33 +46,43 @@ namespace Repositorio.Metodos
                     result2.Add(new AlbumDTOGet(a));
                 }
 
-                foreach(AlbumDTOGet dto in result2)
-                {
-                    dto.Artista = new ArtistaDTOGetAlbum(context.Artistas.Find(dto.ArtistaID));
-
-                }
+                // TODO: traer artista y pais DTO
 
                 return result2;
             }
         }
 
-        public Task<Album> GetByIDAsync(int id)
+        public async Task<Album> GetByIDAsync(int id)
         {
-            throw new NotImplementedException();
+            using(var context = new AppDBContext(this._options))
+            {
+                return await context.Albums.FirstOrDefaultAsync(x => x.ID == id);
+            }
         }
 
-        public async Task<int> CreateAsync(Album album)
+        public async Task CreateAsync(Album album)
         {
             using(var context = new AppDBContext(this._options))
             {
                 context.Albums.Add(album);
-                return await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
         }
 
-        public Task<int> RemoveAsync(int id)
+        public async Task<int> RemoveAsync(int id)
         {
-            throw new NotImplementedException();
+            Album a = new Album()
+            {
+                ID = id
+            };
+
+            using(var context = new AppDBContext(this._options))
+            {
+                context.Remove(a);
+                return await context.SaveChangesAsync();
+            }
+
+
         }
     }
 }

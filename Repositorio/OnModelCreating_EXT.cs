@@ -79,6 +79,8 @@ namespace Repositorio
                 .HasForeignKey(c => c.ArtistaID)
                 .OnDelete(deleteBehavior: DeleteBehavior.Restrict);
 
+            
+
 
         }
 
@@ -124,6 +126,21 @@ namespace Repositorio
             entity.HasIndex(c => c.UsuarioID);
 
             
+
+
+        }
+
+        public static void ConfigCancionesPlaylist(this ModelBuilder mb)
+        {
+            var entity = mb.Entity<CancionesPlaylist>();
+
+            entity.ToTable("CancionesPlaylists", "dbo")
+                .HasKey(x => new { x.CancionID, x.PlaylistID });
+
+
+            
+
+
         }
     }
 }

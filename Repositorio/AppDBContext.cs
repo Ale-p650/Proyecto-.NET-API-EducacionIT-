@@ -34,6 +34,7 @@ namespace Repositorio
             mb.ConfigGeneros();
             mb.ConfigPais();
             mb.ConfigPlaylist();
+            mb.ConfigCancionesPlaylist();
         }
 
         public DbSet<Album> Albums { get; set; }
@@ -42,6 +43,7 @@ namespace Repositorio
         public DbSet<Genero> Generos { get; set; }
         public DbSet<Pais> Paises { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
+        public DbSet<CancionesPlaylist> CancionesPlaylists { get; set; }
 
 
     }

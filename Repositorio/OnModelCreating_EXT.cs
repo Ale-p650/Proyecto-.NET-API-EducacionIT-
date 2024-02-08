@@ -126,7 +126,7 @@ namespace Repositorio
             entity.HasIndex(c => c.UsuarioID);
 
             
-
+            
 
         }
 

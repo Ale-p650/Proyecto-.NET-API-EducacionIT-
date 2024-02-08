@@ -23,6 +23,7 @@ namespace ProyectoIT
             services.AddScoped<IGeneroRepositorio, GeneroREPO>();
             services.AddScoped<ICancionRepositorio, CancionREPO>();
             services.AddScoped<IArtistaRepositorio, ArtistaREPO>();
+            services.AddScoped<IPlaylistRepositorio, PlaylistRepo>();
         }
     }
 }

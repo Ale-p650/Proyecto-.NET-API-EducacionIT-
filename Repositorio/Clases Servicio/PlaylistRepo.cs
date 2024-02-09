@@ -27,7 +27,7 @@ namespace Repositorio.Clases_Servicio
             using (var context = new AppDBContext(_options))
             {
                 Playlist? playlist = context.Playlists.FirstOrDefault(x => x.ID == id);
-
+                
                 if (playlist != null)
                 {
                     if (like)
@@ -61,6 +61,8 @@ namespace Repositorio.Clases_Servicio
                 context.CancionesPlaylists.Add(new CancionesPlaylist()
                 { CancionID = cancion.ID, PlaylistID = playlist.ID });
 
+                await context.SaveChangesAsync();
+
                 return cancion.Nombre;
 
             }
@@ -81,6 +83,8 @@ namespace Repositorio.Clases_Servicio
 
                 context.CancionesPlaylists.Remove(new CancionesPlaylist()
                 { CancionID = cancion.ID, PlaylistID = playlist.ID });
+
+                await context.SaveChangesAsync();
 
                 return cancion.Nombre;
             }

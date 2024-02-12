@@ -23,12 +23,13 @@ namespace Repositorio.Clases_Servicio
         #endregion
 
 
-        public async Task CrearGenero(Genero g)
+        public async Task<bool> CrearGenero(Genero g)
         {
             using(var context = new AppDBContext(_options))
             {
                 context.Generos.Add(g);
-                await context.SaveChangesAsync();
+                var x = await context.SaveChangesAsync();
+                return x > 0;
             }
         }
 

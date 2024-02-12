@@ -125,12 +125,13 @@ namespace Repositorio.Clases_Servicio
             }
         }
 
-        public async Task CrearPlaylist(PlaylistDTOCreate p)
+        public async Task<bool> CrearPlaylist(PlaylistDTOCreate p)
         {
             using(var context = new AppDBContext(_options))
             {
                 context.Playlists.Add(p.GetPlaylist());
-                await context.SaveChangesAsync();
+                var x = await context.SaveChangesAsync();
+                return x > 0;
             }
         }
     }

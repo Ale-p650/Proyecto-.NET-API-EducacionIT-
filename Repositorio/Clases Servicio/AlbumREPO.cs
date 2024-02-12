@@ -60,12 +60,17 @@ namespace Repositorio.Metodos
             }
         }
 
-        public async Task CreateAsync(Album album)
+        public async Task<bool> CreateAsync(AlbumDTOCreate dto)
         {
             using(var context = new AppDBContext(this._options))
             {
-                context.Albums.Add(album);
-                await context.SaveChangesAsync();
+                Album album = new Album();
+                album
+
+
+                context.Albums.Add();
+                var x= await context.SaveChangesAsync();
+                return x > 0;
             }
         }
 

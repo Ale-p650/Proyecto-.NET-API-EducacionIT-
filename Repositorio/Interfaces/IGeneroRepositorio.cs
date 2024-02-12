@@ -9,7 +9,7 @@ namespace Repositorio.Interfaces
 {
     public interface IGeneroRepositorio
     {
-        Task CrearGenero(Genero g);
+        Task<bool> CrearGenero(Genero g);
 
         Task<List<Genero>> GetGeneros();
 

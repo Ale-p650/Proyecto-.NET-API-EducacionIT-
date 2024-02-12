@@ -26,12 +26,13 @@ namespace Repositorio.Clases_Servicio
 
 
         
-        public async Task CrearPais(Pais p)
+        public async Task<bool> CrearPais(Pais p)
         {
             using(var context = new AppDBContext(_options))
             {
                 await context.AddAsync(p);
-                await context.SaveChangesAsync();
+                var x = await context.SaveChangesAsync();
+                return x > 0;
             }
         }
 

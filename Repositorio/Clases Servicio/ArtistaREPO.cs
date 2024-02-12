@@ -25,12 +25,13 @@ namespace Repositorio.Clases_Servicio
 
         #endregion
 
-        public async Task CreateAsync(Artista artista)
+        public async Task<bool> CreateAsync(Artista artista)
         {
             using(var context= new AppDBContext(_options))
             {
                 context.Artistas.Add(artista);
-                await context.SaveChangesAsync();
+                var x = await context.SaveChangesAsync();
+                return x > 0;
             }
         }
 

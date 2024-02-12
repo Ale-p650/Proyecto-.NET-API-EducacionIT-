@@ -19,7 +19,7 @@ namespace Repositorio.Interfaces
         Task<Artista> GetByIDAsync(int id);
 
 
-        Task CreateAsync(Artista a);
+        Task<bool> CreateAsync(Artista a);
 
         Task<bool> RemoveAsync(int id);
     }

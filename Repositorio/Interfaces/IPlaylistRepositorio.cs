@@ -12,7 +12,7 @@ namespace Repositorio.Interfaces
     {
         Task<Playlist> GetPlaylist(int id,bool like=false);
 
-        Task CrearPlaylist(PlaylistDTOCreate p);
+        Task<bool> CrearPlaylist(PlaylistDTOCreate p);
         Task<bool> BorrarPlaylist(int id);
 
         Task<bool> CambiarNombrePlaylist(int id, string nombre);

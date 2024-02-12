@@ -16,7 +16,7 @@ namespace Repositorio.Interfaces
 
         Task<Album> GetByIDAsync(int id);
 
-        Task CreateAsync(Album album);
+        Task<bool> CreateAsync(Album album);
 
         Task<int> RemoveAsync(int id);
     }

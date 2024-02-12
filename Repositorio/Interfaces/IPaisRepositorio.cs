@@ -9,7 +9,7 @@ namespace Repositorio.Interfaces
 {
     public interface IPaisRepositorio
     {
-        Task CrearPais(Pais p);
+        Task<bool> CrearPais(Pais p);
 
         Task<List<Pais>> GetPaises();
 

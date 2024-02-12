@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Model.DTO;
+using Model.Entidades;
 using Repositorio.Interfaces;
 
 namespace ProyectoIT.Controllers
@@ -24,9 +25,16 @@ namespace ProyectoIT.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAlbum()
         {
-            var select= await this._repositorio.GetAllAsync();
+            var result= await this._repositorio.GetAllAsync();
 
-            return Ok(select);
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAlbumByID(int id)
+        {
+            var result = await _repositorio.GetByIDAsync(id);
+            return Ok(result);
         }
 
         [HttpGet("dto")]
@@ -36,5 +44,14 @@ namespace ProyectoIT.Controllers
 
             return Ok(select);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAlbum([FromBody]AlbumDTOCreate album)
+        {
+            var result = await _repositorio.CreateAsync(album);
+            return Ok(result);
+        }
+
+
     }
 }

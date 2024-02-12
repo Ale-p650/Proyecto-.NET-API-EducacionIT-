@@ -18,12 +18,13 @@ namespace Repositorio.Clases_Servicio
             _options = options;
         }
 
-        public async Task CrearCancion(Cancion c)
+        public async Task<bool> CrearCancion(Cancion c)
         {
             using (var context = new AppDBContext(this._options))
             {
                 context.Canciones.Add(c);
-                await context.SaveChangesAsync();
+                var x = await context.SaveChangesAsync();
+                return x > 0;
             }
         }
 

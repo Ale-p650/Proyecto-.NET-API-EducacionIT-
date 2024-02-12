@@ -9,7 +9,7 @@ namespace Repositorio.Interfaces
 {
     public interface ICancionRepositorio
     {
-        Task CrearCancion(Cancion c);
+        Task<bool> CrearCancion(Cancion c);
 
         Task<List<Cancion>> GetCanciones();
 

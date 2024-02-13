@@ -15,6 +15,10 @@ namespace Model.DTO
         [Required]
         public string Nombre { get; set; }
         public int OrdenAlbum { get; set; }
-        public int Duracion { get; set; 
+        public int Duracion { get; set; }
+
+        
     }
+
+
 }

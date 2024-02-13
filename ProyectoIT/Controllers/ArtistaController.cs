@@ -23,6 +23,11 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetArtistas()
         {
             var result = await _repositorio.GetAllAsync();
+            if (result == null|| result.Count==0)
+            {
+                return NotFound("No hay artistas para mostrar");
+            }
+
             return Ok(result);
         }
 
@@ -30,13 +35,24 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetByID(int id)
         {
             var result = await _repositorio.GetByIDAsync(id);
+
+            if (result == null)
+            {
+                return NotFound("No se ha encontrado el Artista solicitado");
+            }
+
             return Ok(result);
         }
 
         [HttpGet("pais/{id}")]
-        public async Task<IActionResult> GetCancionByAlbumID(int id)
+        public async Task<IActionResult> GetArtistaByPaisID(int id)
         {
             var result = await _repositorio.GetByPais(id);
+            if (result == null)
+            {
+                return NotFound("No se ha encontrado el Artista solicitado");
+            }
+
             return Ok(result);
         }
 
@@ -44,6 +60,11 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetDTO()
         {
             var result = await _repositorio.GetDTOAllAsync();
+            if (result == null)
+            {
+                return NotFound("No se ha encontrado el Artista solicitado");
+            }
+
             return Ok(result);
         }
 
@@ -51,15 +72,19 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> CrearArtista([FromBody] Artista ar)
         {
 
-            await _repositorio.CreateAsync(ar);
-            return Ok();
+            var result= await _repositorio.CreateAsync(ar);
+            if (result) return Ok($"Se ha creado Artista:  {ar.Nombre}");
+            else return BadRequest("No se ha podido cargar el Artista");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> BorrarArtista(int id)
         {
             var result = await _repositorio.RemoveAsync(id);
-            return Ok(result);
+
+            if (result) return Ok($"Se ha eliminado Artista con ID: {id}");
+            else return BadRequest("No se ha podido eliminar el recurso solicitado");
+            
         }
 
         

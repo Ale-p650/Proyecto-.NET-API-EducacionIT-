@@ -45,7 +45,9 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> BorrarPlaylist(int id)
         {
             var result = await _repositorio.BorrarPlaylist(id);
-            return Ok(result);
+            if (result) return Ok($"Se ha eliminado Playlist con ID: {id}");
+            else return BadRequest("No se ha podido eliminar el recurso solicitado");
+
         }
 
         [HttpPatch("nombre")]

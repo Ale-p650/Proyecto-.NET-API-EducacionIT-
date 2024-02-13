@@ -41,8 +41,8 @@ namespace Model.Entidades
         public int ArtistaID { get; set; }
         public Artista? Artista { get; set; }
 
+        public int? PaisID { get; set; }
 
-        
     }
 
 

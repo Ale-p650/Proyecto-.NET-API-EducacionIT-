@@ -23,13 +23,23 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetCanciones()
         {
             var result = await _repositorio.GetCanciones();
+            if (result == null || result.Count == 0)
+            {
+                return NotFound("No hay Canciones para mostrar");
+            }
+
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}",Name ="GetByID")]
         public async Task<IActionResult> GetCancionByID(int id)
         {
             var result = await _repositorio.GetCancionByID(id);
+            if (result == null)
+            {
+                return NotFound("No hay Canciones para mostrar");
+            }
+
             return Ok(result);
         }
 
@@ -37,6 +47,11 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetCancionByAlbumID(int id)
         {
             var result = await _repositorio.GetCancionByAlbumID(id);
+            if (result == null || result.Count == 0)
+            {
+                return NotFound("No hay Canciones para mostrar");
+            }
+
             return Ok(result);
         }
 
@@ -44,6 +59,11 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetCancionByArtistaID(int id)
         {
             var result = await _repositorio.GetCancionByArtistaID(id);
+            if (result == null || result.Count == 0)
+            {
+                return NotFound("No hay Canciones para mostrar");
+            }
+
             return Ok(result);
         }
 
@@ -51,15 +71,22 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> CrearCancion([FromBody] Cancion c)
         {
             
-            await _repositorio.CrearCancion(c);
-            return Ok();
+            var result = await _repositorio.CrearCancion(c);
+            if (result)
+            {
+                //return CreatedAtRoute("GetByID", new {id=})
+            }
+
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> BorrarCancion(int id)
         {
             var result = await _repositorio.RemoveCancion(id);
-            return Ok(result);
+            if (result) return Ok($"Se ha eliminado la Cancion con ID: {id}");
+            else return BadRequest("No se ha podido eliminar el recurso solicitado");
+
         }
 
         [HttpPut]

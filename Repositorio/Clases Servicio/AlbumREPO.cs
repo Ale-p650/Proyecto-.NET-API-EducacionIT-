@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Model.DTO;
 using Model.Entidades;
+using Repositorio.Clases_Servicio;
 using Repositorio.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -60,17 +61,34 @@ namespace Repositorio.Metodos
             }
         }
 
-        public async Task<bool> CreateAsync(AlbumDTOCreate dto)
+        public async Task<Album> CreateAsync(AlbumDTOCreate dto)
         {
             using(var context = new AppDBContext(this._options))
             {
                 Album album = new Album();
-                album
+                album.Nombre = dto.Nombre;
+                album.TipoDisco = (Tipo)dto.SetTipo();
+                album.Año = dto.Año;
+                album.NumeroTracks = dto.Canciones.Count();
+                album.Duracion = dto.GetDuracionTotal();
+                album.PathCover = await dto.CoverDownload(dto.CoverURL);
+                album.Generos = dto.CastGeneros();
+                album.ArtistaID = dto.ArtistaID;
+                album.Canciones = dto.CastCanciones(dto.ArtistaID, (context.Albums.Max(a => a.ID))+1);
+                album.PaisID = null;
 
 
-                context.Albums.Add();
-                var x= await context.SaveChangesAsync();
-                return x > 0;
+
+
+                context.Albums.Add(album);
+
+                foreach(Cancion c in album.Canciones)
+                {
+                    context.Canciones.Add(c);
+                }
+
+                await context.SaveChangesAsync();
+                return album;
             }
         }
 
@@ -89,5 +107,8 @@ namespace Repositorio.Metodos
 
 
         }
+
+        
+
     }
 }

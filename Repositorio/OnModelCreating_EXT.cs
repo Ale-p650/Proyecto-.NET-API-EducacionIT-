@@ -28,10 +28,6 @@ namespace Repositorio
                 .HasForeignKey(a => a.ArtistaID)
                 .OnDelete(deleteBehavior: DeleteBehavior.Restrict);
 
-
-
-
-
         }
 
         public static void ConfigArtista(this ModelBuilder mb)
@@ -72,7 +68,7 @@ namespace Repositorio
             entity.HasOne(c => c.Album)
                 .WithMany(a => a.Canciones)
                 .HasForeignKey(c => c.AlbumID)
-                .OnDelete(deleteBehavior: DeleteBehavior.Restrict);
+                .OnDelete(deleteBehavior: DeleteBehavior.Cascade);
 
             entity.HasOne(c => c.Artista)
                 .WithMany(a => a.Canciones)

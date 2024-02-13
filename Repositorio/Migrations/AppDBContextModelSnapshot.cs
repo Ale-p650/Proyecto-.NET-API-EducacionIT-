@@ -219,7 +219,6 @@ namespace Repositorio.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("Descripcion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Duracion")
@@ -291,7 +290,7 @@ namespace Repositorio.Migrations
                     b.HasOne("Model.Entidades.Album", "Album")
                         .WithMany("Canciones")
                         .HasForeignKey("AlbumID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Model.Entidades.Artista", "Artista")

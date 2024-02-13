@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositorio.Interfaces
 {
-    public interface IAlbumRepositorio 
+    public interface IAlbumRepositorio
     {
         Task<List<Album>> GetAllAsync();
 
@@ -16,8 +16,10 @@ namespace Repositorio.Interfaces
 
         Task<Album> GetByIDAsync(int id);
 
-        Task<bool> CreateAsync(Album album);
+        Task<Album> CreateAsync(AlbumDTOCreate album);
 
         Task<int> RemoveAsync(int id);
+
+        
     }
 }

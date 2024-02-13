@@ -23,6 +23,12 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetGeneros()
         {
             var result = await _repositorio.GetGeneros();
+
+            if (result == null || result.Count == 0)
+            {
+                return NotFound("No hay artistas para mostrar");
+            }
+
             return Ok(result);
         }
 
@@ -30,6 +36,11 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetGeneroByID(int id)
         {
             var result = await _repositorio.GetGeneroByID(id);
+            if (result == null)
+            {
+                return NotFound("No hay artistas para mostrar");
+            }
+
             return Ok(result);
         }
 
@@ -45,7 +56,9 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> BorrarGenero(int id)
         {
             var result = await _repositorio.RemoveGenero(id);
-            return Ok(result);
+            if (result) return Ok($"Se ha eliminado Genero con ID: {id}");
+            else return BadRequest("No se ha podido eliminar el recurso solicitado");
+
         }
 
         [HttpPut]

@@ -2,6 +2,7 @@
 using Model.DTO;
 using Model.Entidades;
 using Repositorio.Interfaces;
+using Repositorio.Metodos;
 
 namespace ProyectoIT.Controllers
 {
@@ -27,29 +28,45 @@ namespace ProyectoIT.Controllers
         {
             var result= await this._repositorio.GetAllAsync();
 
+            if (result == null || result.Count==0)
+            {
+                return NotFound("No hay Albums para mostrar");
+            }
+
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}",Name ="GetByID")]
         public async Task<IActionResult> GetAlbumByID(int id)
         {
             var result = await _repositorio.GetByIDAsync(id);
+
+            if (result == null)
+            {
+                return NotFound("No se ha encontrado el Album solicitado");
+            }
+
             return Ok(result);
         }
 
         [HttpGet("dto")]
         public async Task<IActionResult> GetAlbumDTO()
         {
-            var select = await this._repositorio.GetDTOAllAsync();
+            var result = await this._repositorio.GetDTOAllAsync();
 
-            return Ok(select);
+            if (result == null)
+            {
+                return NotFound("No se ha encontrado el Album solicitado");
+            }
+
+            return Ok(result);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateAlbum([FromBody]AlbumDTOCreate album)
         {
             var result = await _repositorio.CreateAsync(album);
-            return Ok(result);
+            return CreatedAtRoute("GetByID", new { id = _repositorio.GetLastID() }, result);
         }
 
 

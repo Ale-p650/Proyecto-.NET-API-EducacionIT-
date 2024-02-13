@@ -24,6 +24,11 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetPaises()
         {
             var result=await this._repositorio.GetPaises();
+            if (result == null || result.Count == 0)
+            {
+                return NotFound("No hay artistas para mostrar");
+            }
+
             return Ok(result);
         }
 
@@ -31,6 +36,11 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> GetPaises([FromRoute] int id)
         {
             var result = await this._repositorio.GetPaisByID(id);
+            if (result == null)
+            {
+                return NotFound("No hay artistas para mostrar");
+            }
+
             return Ok(result);
         }
 
@@ -47,8 +57,10 @@ namespace ProyectoIT.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> BorrarPais([FromRoute] int id)
         {
-            await _repositorio.RemovePais(id);
-            return Ok();
+            var result = await _repositorio.RemovePais(id);
+            if (result) return Ok($"Se ha eliminado Pais con ID: {id}");
+            else return BadRequest("No se ha podido eliminar el recurso solicitado");
+
         }
 
         [HttpPut]

@@ -41,12 +41,12 @@ namespace ProyectoIT.Controllers
         {
             var result = await _repositorio.GetByIDAsync(id);
 
-            if (result == null)
-            {
-                return NotFound("No se ha encontrado el Album solicitado");
-            }
+            //if (result == null)
+            //{
+            //    return NotFound("No se ha encontrado el Album solicitado");
+            //}
 
-            return Ok(result);
+            return Content(result);
         }
 
         [HttpGet("dto")]
@@ -66,7 +66,7 @@ namespace ProyectoIT.Controllers
         public async Task<IActionResult> CreateAlbum([FromBody]AlbumDTOCreate album)
         {
             var result = await _repositorio.CreateAsync(album);
-            return CreatedAtRoute("GetByID", new { id = _repositorio.GetLastID() }, result);
+            return Ok();
         }
 
 

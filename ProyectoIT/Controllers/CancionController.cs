@@ -31,7 +31,7 @@ namespace ProyectoIT.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}",Name ="GetByID")]
+        [HttpGet("{id}",Name ="GetCancionByID")]
         public async Task<IActionResult> GetCancionByID(int id)
         {
             var result = await _repositorio.GetCancionByID(id);

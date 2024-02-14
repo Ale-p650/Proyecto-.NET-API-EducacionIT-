@@ -29,7 +29,7 @@ namespace Model.Entidades
 
         public int Duracion { get; set; }
 
-        public string PathCover { get; set; }
+        public byte[] Cover { get; set; }
 
 
         public ICollection<Genero>? Generos { get; set; }

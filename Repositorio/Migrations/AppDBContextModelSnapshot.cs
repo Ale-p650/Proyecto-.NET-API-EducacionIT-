@@ -36,6 +36,10 @@ namespace Repositorio.Migrations
                     b.Property<int>("Año")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("Cover")
+                        .IsRequired()
+                        .HasColumnType("image");
+
                     b.Property<int>("Duracion")
                         .HasColumnType("int");
 
@@ -48,10 +52,6 @@ namespace Repositorio.Migrations
 
                     b.Property<int?>("PaisID")
                         .HasColumnType("int");
-
-                    b.Property<string>("PathCover")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TipoDisco")
                         .HasColumnType("int");

@@ -14,7 +14,7 @@ namespace Repositorio.Interfaces
 
         Task<List<AlbumDTOGet>> GetDTOAllAsync();
 
-        Task<Album> GetByIDAsync(int id);
+        Task<string> GetByIDAsync(int id);
 
         Task<Album> CreateAsync(AlbumDTOCreate album);
 

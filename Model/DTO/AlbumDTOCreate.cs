@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Model.DTO
 {
@@ -58,25 +59,12 @@ namespace Model.DTO
         }
 
 
-        public async Task<string> CoverDownload(string URL)
+        public async Task<byte[]> CoverDownload(string URL)
         {
-
 
             using (HttpClient client = new HttpClient())
             {
-                byte[] arr = await client.GetByteArrayAsync(URL);
-
-                string albumCoverPath = "C:\\Users\\Usuario\\Desktop\\Proyecto\\AlbumCovers\\";
-
-                int x = Directory.GetFiles(albumCoverPath).Length;
-
-                string path = albumCoverPath + (x + 1).ToString() + ".jpg";
-
-                await File.WriteAllBytesAsync(path, arr);
-
-                return path;
-
-
+                return await client.GetByteArrayAsync(URL);
             }
 
         }

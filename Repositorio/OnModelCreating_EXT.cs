@@ -28,6 +28,8 @@ namespace Repositorio
                 .HasForeignKey(a => a.ArtistaID)
                 .OnDelete(deleteBehavior: DeleteBehavior.Restrict);
 
+            entity.Property(a => a.Cover).HasColumnType("image");
+
         }
 
         public static void ConfigArtista(this ModelBuilder mb)

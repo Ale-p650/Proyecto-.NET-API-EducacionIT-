@@ -53,11 +53,45 @@ namespace Repositorio.Metodos
             }
         }
 
-        public async Task<Album> GetByIDAsync(int id)
+        public async Task<string> GetByIDAsync(int id)
         {
             using(var context = new AppDBContext(this._options))
             {
-                return await context.Albums.FirstOrDefaultAsync(x => x.ID == id);
+                Album? album= await context.Albums.Include
+                    (a=>a.Artista).FirstOrDefaultAsync(x => x.ID == id);
+
+                album.Canciones = context.Canciones.Where(c => c.AlbumID == album.ID).ToList();
+
+
+                var tiempo = TimeSpan.FromSeconds(album.Duracion);
+
+                var base64Image = Convert.ToBase64String(album.Cover);
+
+                var source = String.Format("data:image/png;base64,{0}", base64Image);
+
+                
+
+                StringBuilder sb = new StringBuilder();
+
+                if (album != null)
+                {
+                    sb.Append("<div>");
+                    sb.Append($"<h1>{album.TipoDisco} :  {album.Nombre}<h1>");
+                    sb.Append($"<h2>{album.Artista.Nombre}<h2>");
+                    sb.Append($"< img src =  \"{source} \"/>");
+                    sb.Append($"<h3>Año :{album.Año}<h3>");
+                    sb.Append($"<h3>{album.NumeroTracks} Canciones<h3>");
+                    sb.Append($"<h3>{tiempo.Minutes.ToString()} minutos<h3>");
+                
+                    foreach(Cancion c in album.Canciones)
+                    {
+                        sb.Append($"<h3>#{c.OrdenAlbum}  {c.Nombre}<h1>");
+                    }
+
+                    sb.Append("</div>");
+                }
+                
+                return sb.ToString();
             }
         }
 
@@ -71,7 +105,7 @@ namespace Repositorio.Metodos
                 album.Año = dto.Año;
                 album.NumeroTracks = dto.Canciones.Count();
                 album.Duracion = dto.GetDuracionTotal();
-                album.PathCover = await dto.CoverDownload(dto.CoverURL);
+                album.Cover = await dto.CoverDownload(dto.CoverURL);
                 album.Generos = dto.CastGeneros();
                 album.ArtistaID = dto.ArtistaID;
                 album.Canciones = dto.CastCanciones(dto.ArtistaID, (context.Albums.Max(a => a.ID))+1);

@@ -26,7 +26,7 @@ namespace Model.DTO
             this.Año = album.Año;
             this.NumeroTracks = album.NumeroTracks;
             this.Duracion = album.Duracion;
-            this.PathCover = album.PathCover;
+            
             this.ArtistaID = album.ArtistaID;
             
         }
@@ -47,7 +47,7 @@ namespace Model.DTO
 
         public int Duracion { get; set; }
 
-        public string PathCover { get; set; }
+        
 
 
 

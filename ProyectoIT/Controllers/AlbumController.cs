@@ -2,7 +2,6 @@
 using Model.DTO;
 using Model.Entidades;
 using Repositorio.Interfaces;
-using Repositorio.Metodos;
 
 namespace ProyectoIT.Controllers
 {

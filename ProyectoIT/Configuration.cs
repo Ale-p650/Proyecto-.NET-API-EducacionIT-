@@ -1,9 +1,14 @@
 ﻿using Repositorio.Clases_Servicio;
 using Repositorio.Interfaces;
-using Repositorio.Metodos;
 
 namespace ProyectoIT
 {
+    public enum Origen
+    {
+        BBDD,
+        Archivo
+    }
+
     public static class Configuration
     {
         public static string GetConnectionString()
@@ -16,14 +21,18 @@ namespace ProyectoIT
             return x.GetConnectionString("Conn");
         }
 
-        public static void AddRepositories(this IServiceCollection services)
+        public static void AddRepositories(this IServiceCollection services,Origen origen)
         {
-            services.AddScoped<IAlbumRepositorio, AlbumREPO>();
             services.AddScoped<IPaisRepositorio, PaisREPO>();
             services.AddScoped<IGeneroRepositorio, GeneroREPO>();
             services.AddScoped<ICancionRepositorio, CancionREPO>();
             services.AddScoped<IArtistaRepositorio, ArtistaREPO>();
             services.AddScoped<IPlaylistRepositorio, PlaylistRepo>();
+
+            if (origen == Origen.BBDD) services.AddScoped<IAlbumRepositorio, AlbumREPO>();
+
+            else services.AddScoped<IAlbumRepositorio, AlbumFileREPO>(x => new AlbumFileREPO(Environment.CurrentDirectory));
+            
         }
     }
 }

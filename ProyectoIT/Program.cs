@@ -3,7 +3,7 @@ using ProyectoIT;
 using Repositorio;
 using Repositorio.Clases_Servicio;
 using Repositorio.Interfaces;
-using Repositorio.Metodos;
+using Repositorio.Clases_Servicio;
 using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddRepositories();
+builder.Services.AddRepositories(Origen.Archivo);
 
 builder.Services.AddDbContext<AppDBContext>
     (options => options.UseSqlServer

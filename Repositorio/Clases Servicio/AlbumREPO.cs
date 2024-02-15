@@ -11,7 +11,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositorio.Metodos
+namespace Repositorio.Clases_Servicio
 {
     public class AlbumREPO : IAlbumRepositorio
     {

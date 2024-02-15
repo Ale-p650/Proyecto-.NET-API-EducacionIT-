@@ -68,3 +68,5 @@ C:\Users\Usuario\Desktop\Proyecto\ProyectoIT\obj\Debug\net6.0\ProyectoIT.pdb
 C:\Users\Usuario\Desktop\Proyecto\ProyectoIT\obj\Debug\net6.0\ProyectoIT.genruntimeconfig.cache
 C:\Users\Usuario\Desktop\Proyecto\ProyectoIT\obj\Debug\net6.0\ref\ProyectoIT.dll
 C:\Users\Usuario\Desktop\Proyecto\ProyectoIT\obj\Debug\net6.0\ProyectoIT.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Usuario\Desktop\Proyecto\ProyectoIT\bin\Debug\net6.0\Albums.json
+C:\Users\Usuario\Desktop\Proyecto\ProyectoIT\bin\Debug\net6.0\Newtonsoft.Json.dll

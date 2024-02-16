@@ -11,6 +11,18 @@ namespace ProyectoIT
 
     public static class Configuration
     {
+        private static IServiceProvider _provider;
+
+        public static void SetProvider(IServiceProvider provider)
+        {
+            _provider = provider;
+        }
+
+        public static IServiceProvider GetProvider()
+        {
+            return _provider;
+        }
+
         public static string GetConnectionString()
         {
             var config = new ConfigurationBuilder().
@@ -28,6 +40,7 @@ namespace ProyectoIT
             services.AddScoped<ICancionRepositorio, CancionREPO>();
             services.AddScoped<IArtistaRepositorio, ArtistaREPO>();
             services.AddScoped<IPlaylistRepositorio, PlaylistRepo>();
+            services.AddTransient<MiddlewareLogsREPO>();
 
             if (origen == Origen.BBDD) services.AddScoped<IAlbumRepositorio, AlbumREPO>();
 

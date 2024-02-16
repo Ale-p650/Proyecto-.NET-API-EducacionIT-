@@ -35,6 +35,8 @@ namespace Repositorio
             mb.ConfigPais();
             mb.ConfigPlaylist();
             mb.ConfigCancionesPlaylist();
+            mb.ConfigMiddlewareLogs();
+            
         }
 
         public DbSet<Album> Albums { get; set; }
@@ -44,6 +46,8 @@ namespace Repositorio
         public DbSet<Pais> Paises { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<CancionesPlaylist> CancionesPlaylists { get; set; }
+
+        public DbSet<MiddlewareLogs> MiddlewareLogs { get; set; }
 
 
     }

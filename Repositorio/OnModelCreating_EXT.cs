@@ -140,5 +140,13 @@ namespace Repositorio
 
 
         }
+
+        public static void ConfigMiddlewareLogs(this ModelBuilder mb)
+        {
+            var entity = mb.Entity<MiddlewareLogs>();
+
+            entity.ToTable("CancionesPlaylists", "logs")
+                .HasKey(x => x.ID);
+        }
     }
 }

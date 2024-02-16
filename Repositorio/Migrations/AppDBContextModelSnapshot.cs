@@ -191,6 +191,26 @@ namespace Repositorio.Migrations
                     b.ToTable("Generos", "dbo");
                 });
 
+            modelBuilder.Entity("Model.Entidades.MiddlewareLogs", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Method")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("CancionesPlaylists", "logs");
+                });
+
             modelBuilder.Entity("Model.Entidades.Pais", b =>
                 {
                     b.Property<int>("ID")

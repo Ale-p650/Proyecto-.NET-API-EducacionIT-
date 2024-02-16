@@ -1,4 +1,5 @@
-﻿using Model.Entidades;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using Model.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -54,5 +55,7 @@ namespace Model.DTO
         [Required]
         public int ArtistaID { get; set; }
         public ArtistaDTOGetAlbum Artista { get; set; }
+
+        
     }
 }

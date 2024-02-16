@@ -25,14 +25,16 @@ namespace ProyectoIT.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAlbum()
         {
-            var result= await this._repositorio.GetAllAsync();
+            var result = await this._repositorio.GetAllAsync();
 
-            if (result == null || result.Count==0)
+            if (result == null || result.Count == 0)
             {
                 return NotFound("No hay Albums para mostrar");
             }
 
             return Ok(result);
+
+            // TEST throw new Exception();
         }
 
         [HttpGet("{id}",Name ="GetByID")]
@@ -40,10 +42,10 @@ namespace ProyectoIT.Controllers
         {
             var result = await _repositorio.GetByIDAsync(id);
 
-            //if (result == null)
-            //{
-            //    return NotFound("No se ha encontrado el Album solicitado");
-            //}
+            if (result == null)
+            {
+                return NotFound("No se ha encontrado el Album solicitado");
+            }
 
             return Content(result);
         }

@@ -36,6 +36,7 @@ namespace Repositorio
             mb.ConfigPlaylist();
             mb.ConfigCancionesPlaylist();
             mb.ConfigMiddlewareLogs();
+            mb.ConfigFilterLogs();
             
         }
 
@@ -47,7 +48,9 @@ namespace Repositorio
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<CancionesPlaylist> CancionesPlaylists { get; set; }
 
+
         public DbSet<MiddlewareLogs> MiddlewareLogs { get; set; }
+        public DbSet<FiltroLogs> FiltroLogs { get; set; }
 
 
     }

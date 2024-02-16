@@ -41,6 +41,7 @@ namespace ProyectoIT
             services.AddScoped<IArtistaRepositorio, ArtistaREPO>();
             services.AddScoped<IPlaylistRepositorio, PlaylistRepo>();
             services.AddTransient<MiddlewareLogsREPO>();
+            services.AddTransient<FiltroLogsREPO>();
 
             if (origen == Origen.BBDD) services.AddScoped<IAlbumRepositorio, AlbumREPO>();
 

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Model.DTO;
 using Model.Entidades;
 using ProyectoIT;
+using ProyectoIT.Filtros;
 using ProyectoIT.Middlewares;
 using Repositorio;
 using Repositorio.Clases_Servicio;
@@ -18,7 +19,11 @@ builder.Services.AddMvc().AddJsonOptions
 
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(
+
+    options => { options.Filters.Add<FiltroExcepcion>(); }
+
+    ) ;
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

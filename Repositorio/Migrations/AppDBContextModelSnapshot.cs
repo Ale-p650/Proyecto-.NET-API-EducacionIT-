@@ -172,6 +172,30 @@ namespace Repositorio.Migrations
                     b.ToTable("CancionesPlaylists", "dbo");
                 });
 
+            modelBuilder.Entity("Model.Entidades.FiltroLogs", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Controller")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("FiltroLogs", "logs");
+                });
+
             modelBuilder.Entity("Model.Entidades.Genero", b =>
                 {
                     b.Property<int>("ID")
@@ -208,7 +232,7 @@ namespace Repositorio.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("CancionesPlaylists", "logs");
+                    b.ToTable("MiddlewareLogs", "logs");
                 });
 
             modelBuilder.Entity("Model.Entidades.Pais", b =>

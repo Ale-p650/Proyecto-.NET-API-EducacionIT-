@@ -145,7 +145,15 @@ namespace Repositorio
         {
             var entity = mb.Entity<MiddlewareLogs>();
 
-            entity.ToTable("CancionesPlaylists", "logs")
+            entity.ToTable("MiddlewareLogs", "logs")
+                .HasKey(x => x.ID);
+        }
+
+        public static void ConfigFilterLogs(this ModelBuilder mb)
+        {
+            var entity = mb.Entity<FiltroLogs>();
+
+            entity.ToTable("FiltroLogs", "logs")
                 .HasKey(x => x.ID);
         }
     }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Model.Entidades;
 using Repositorio.Interfaces;
+using ProyectoIT.Filtros;
 
 namespace ProyectoIT.Controllers
 {
+    [FiltroAccion]
     [ApiController]
     [Route("[controller]")]
     public class CancionController : Controller

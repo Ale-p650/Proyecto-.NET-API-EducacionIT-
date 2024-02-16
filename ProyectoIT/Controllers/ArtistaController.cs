@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Model.Entidades;
 using Repositorio.Interfaces;
 
 namespace ProyectoIT.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ArtistaController : Controller

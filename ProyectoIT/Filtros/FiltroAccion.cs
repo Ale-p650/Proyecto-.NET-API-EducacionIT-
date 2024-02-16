@@ -8,7 +8,7 @@ namespace ProyectoIT.Filtros
     public class FiltroAccion :  ActionFilterAttribute
     {
          
-        public override  void OnActionExecuting(ActionExecutingContext context)
+        public  override  void OnActionExecuting(ActionExecutingContext context)
         {
             using(var scope = Configuration.GetProvider().CreateScope())
             {
@@ -23,7 +23,7 @@ namespace ProyectoIT.Filtros
 
                 };
 
-                filtroLog.InsertAsync(log);
+                 filtroLog.InsertAsync(log);
             }
         }
 

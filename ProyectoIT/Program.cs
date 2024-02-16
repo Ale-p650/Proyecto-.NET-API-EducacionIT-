@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Model.DTO;
 using Model.Entidades;
@@ -11,7 +12,7 @@ using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
 builder.Services.AddMvc().AddJsonOptions
     (options => options.JsonSerializerOptions.ReferenceHandler =
@@ -53,6 +54,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseAuthentication();
 
 #region Middlewares Practica
 

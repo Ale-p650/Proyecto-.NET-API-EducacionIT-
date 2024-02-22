@@ -23,14 +23,14 @@ namespace ProyectoIT
             return _provider;
         }
 
-        public static string GetConnectionString()
+        public static string GetConnectionString(string nombre)
         {
             var config = new ConfigurationBuilder().
                 SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+                .AddJsonFile("appsettings.json",false,true);
 
             var x = config.Build();
-            return x.GetConnectionString("Conn");
+            return x.GetConnectionString(nombre);
         }
 
         public static void AddRepositories(this IServiceCollection services,Origen origen)
@@ -44,7 +44,6 @@ namespace ProyectoIT
             services.AddTransient<FiltroLogsREPO>();
 
             if (origen == Origen.BBDD) services.AddScoped<IAlbumRepositorio, AlbumREPO>();
-
             else services.AddScoped<IAlbumRepositorio, AlbumFileREPO>(x => new AlbumFileREPO(Environment.CurrentDirectory));
             
         }

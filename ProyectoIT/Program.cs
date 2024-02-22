@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Model.DTO;
 using Model.Entidades;
@@ -8,11 +9,13 @@ using ProyectoIT.Middlewares;
 using Repositorio;
 using Repositorio.Clases_Servicio;
 using Repositorio.Interfaces;
+using Security;
+using Security.Entidades;
 using System.Runtime.CompilerServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
 
 builder.Services.AddMvc().AddJsonOptions
     (options => options.JsonSerializerOptions.ReferenceHandler =
@@ -33,7 +36,16 @@ builder.Services.AddRepositories(Origen.BBDD);
 
 builder.Services.AddDbContext<AppDBContext>
     (options => options.UseSqlServer
-    (Configuration.GetConnectionString()));
+    (Configuration.GetConnectionString("Conn")));
+
+builder.Services.AddDbContext<SecurityDBContext>
+    (options => options.UseSqlServer
+    (Configuration.GetConnectionString("SecurityConn")));
+
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<SecurityDBContext>()
+    .AddDefaultTokenProviders()
+    .AddRoles<IdentityRole>();
 
 
 var app = builder.Build();
